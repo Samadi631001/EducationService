@@ -1,0 +1,164 @@
+.delegation-card.active {
+  background-color: #e0f7fa;
+  border-color: #00bcd4;
+}
+
+html.layout-menu-collapsed .user-info .user-name,
+html.layout-menu-collapsed .user-info .user-role,
+html.layout-menu-collapsed .user-info .delegation-info,
+html.layout-menu-collapsed .user-info p {
+  display: none !important;
+}
+
+html.layout-menu-collapsed .user-info .avatar {
+  margin: auto;
+  display: block;
+}
+
+.sidebar-content {
+  padding-top: 5.5rem !important;
+
+  .avatar {
+    display: block;
+    margin: auto;
+  }
+
+  .user-details {
+    margin-top: 1rem;
+  }
+}
+
+html.layout-menu-collapsed .sidebar-content .user-details {
+  display: none !important;
+}
+
+.user-profile {
+  padding-top: 5.5rem !important;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+  background-color: #edf2fa;
+}
+
+.user-profile img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid #f0bd05;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile img:hover {
+  transform: scale(1.1);
+}
+
+.user-profile h5 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 15px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.user-profile h5:hover {
+  color: #007bff;
+}
+
+.user-profile small {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.user-profile p {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.delegation-list {
+  margin-top: 20px;
+}
+
+.delegation-card {
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delegation-card:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-2px);
+}
+
+.delegation-card.active {
+  background-color: #e0e0e0;
+}
+
+.delegation-card i {
+  color: #28a745;
+  transition: color 0.3s ease;
+}
+
+.delegation-card:hover i {
+  color: #007bff;
+}
+
+.delegation-card .fw-semibold {
+  font-weight: 500;
+  color: #333;
+}
+
+/* حالت normal (پیش‌فرض) */
+.layout-menu {
+  transition: all 0.3s ease;
+  width: 250px;
+  /* عرض سایدبار در حالت normal */
+}
+
+/* حالت collapsed */
+.layout-menu.layout-menu-collapsed {
+  width: 80px;
+  /* عرض سایدبار در حالت collapsed */
+}
+
+.layout-menu.layout-menu-collapsed .menu-inner .menu-item .menu-link .menu-icon {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 1.5rem;
+  /* اندازه آیکون‌ها در حالت collapsed */
+}
+
+.layout-menu.layout-menu-collapsed .menu-inner .menu-item .menu-link .text-truncate {
+  display: none;
+  /* مخفی کردن متن‌ها در حالت collapsed */
+}
+
+/* وقتی روی آیکون‌ها hover می‌شود */
+.layout-menu.layout-menu-collapsed .menu-inner .menu-item:hover .menu-link .text-truncate {
+  display: inline-block;
+  /* نمایش مجدد متن‌ها هنگام hover روی آیکون‌ها */
+  padding-left: 10px;
+  /* فاصله اضافی برای متن */
+}
+
+/* تصویر پروفایل در حالت collapsed */
+.layout-menu.layout-menu-collapsed .user-profile img {
+  width: 60px;
+  /* کاهش اندازه تصویر پروفایل */
+  height: 60px;
+}
+
+/* استایل برای نمایش دکمه بستن منو */
+.layout-menu.layout-menu-collapsed .layout-menu-toggle {
+  right: 10px;
+  top: 10px;
+  transform: rotate(180deg);
+  /* چرخاندن آیکون دکمه به سمت مخالف */
+}
+
+/* نمایش آیکون دکمه بستن منو */
+.layout-menu.layout-menu-collapsed .layout-menu-toggle .bx {
+  font-size: 1.8rem;
+}

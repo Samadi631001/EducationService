@@ -1,0 +1,277 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-10">
+    <div class="card shadow-sm border-0">
+      <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+        <h5 class="mb-0">📋 لیست دوره‌های آموزشی</h5>
+        <app-label-button identifier="submitBtn" label="ثبت رکورد جدید" className="btn btn-light btn-sm fw-bold"
+          (clicked)="openModal()">
+        </app-label-button>
+      </div>
+
+      <div class="card-body p-3">
+        <ag-grid-angular #agGrid id="myGrid" [components]="components" class="ag-theme-material mt-2 font-sahel"
+          style="height: 640px; width: 100%;" [rowData]="records" [gridOptions]="gridOptions()" [modules]="modules()"
+          (gridReady)="onGridReady($event)">
+        </ag-grid-angular>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="sessionModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="w-100">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h6 class="modal-title mb-0">
+            {{ isEditMode ? '✏️ ویرایش دوره' : '➕ ایجاد دوره جدید' }}
+          </h6>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body p-0">
+          <div class="row mb-2">
+            <div class="col-md-6">
+              <div class="form-row">
+                <label>شماره فرم:</label>
+                <div class="input-wrapper">
+                  <input type="text" class="form-control form-control-sm compact-input" placeholder="" id="number"
+                    formControlName="number" style="width: 100px;" required>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-row">
+                <label class="col-form-label">عنوان:</label>
+                <input type="text" class="form-control form-control-sm" placeholder="English Title" id="title"
+                  formControlName="title" style="direction:rtl;">
+              </div>
+            </div>
+
+          </div>
+          <div class="d-flex">
+
+            <!-- Sidebar Navigation -->
+            <div class="sidebar-nav">
+              <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+                <button class="nav-link active" id="tab-1" data-bs-toggle="pill" data-bs-target="#content-1"
+                  type="button">
+                  <i class="bi bi-gear"></i> تعاریف
+                </button>
+                <button class="nav-link" id="tab-2" data-bs-toggle="pill" data-bs-target="#content-2" type="button">
+                  <i class="bi bi-info-circle"></i> اطلاعات پایه
+                </button>
+                <button class="nav-link" id="tab-3" data-bs-toggle="pill" data-bs-target="#content-3" type="button">
+                  <i class="bi bi-shield-check"></i> مجوز
+                </button>
+                <button class="nav-link" id="tab-4" data-bs-toggle="pill" data-bs-target="#content-4" type="button">
+                  <i class="bi bi-list-ul"></i> جزئیات
+                </button>
+              </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+
+              <div class="tab-content" id="v-pills-tabContent">
+
+                <!-- تب تعاریف -->
+                <div class="tab-pane fade show active" id="content-1">
+                  <div class="compact-form">
+
+                    <!-- ردیف 1 -->
+                    <div class="row mb-2">
+                      <div class="col-md-6">
+                        <div class="form-row">
+                          <label class="col-form-label">مدت ساعت:</label>
+                          <div class="input-wrapper">
+                            <input type="number" class="form-control form-control-sm compact-input" placeholder="0"
+                              id="visionaryPeriod" formControlName="visionaryPeriod" style="width: 60px;">
+                            <span class="mx-1">نظری و</span>
+                            <input type="number" class="form-control form-control-sm compact-input" placeholder="0"
+                              id="practicalPeriod" formControlName="practicalPeriod" style="width: 60px;">
+                            <span class="mx-1">عملی</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-row">
+                          <label class="col-form-label">عنوان لاتین:</label>
+                          <input type="text" class="form-control form-control-sm" placeholder="English Title"
+                            id="titleEnglish" formControlName="titleEnglish" style="direction: ltr;">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ردیف 2 -->
+                    <div class="row mb-2">
+                      <div class="col-md-6">
+                        <div class="form-row">
+                          <label class="col-form-label">اعتبار تا بازآموزی:</label>
+                          <div class="input-wrapper">
+                            <input type="number" class="form-control form-control-sm compact-input" placeholder="0"
+                              id="daysToExpire" formControlName="daysToExpire" style="width: 70px;">
+                            <span class="mx-1">روز</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-row">
+                          <label class="col-form-label">فرصت تمدید:</label>
+                          <div class="input-wrapper">
+                            <input type="number" class="form-control form-control-sm compact-input" placeholder="0"
+                              id="daysToExtension" formControlName="daysToExtension" style="width: 70px;">
+                            <span class="mx-1">روز</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ردیف 3 - حیطه -->
+                    <div class="row mb-2">
+                      <div class="col-md-12">
+                        <div class="form-row">
+                          <label class="col-form-label">حیطه:</label>
+                          <div class="scope-inputs">
+                            <div class="scope-item">
+                              <span class="scope-label">دانش</span>
+                              <input type="number" class="form-control form-control-sm text-center" min="0" max="100"
+                                id="knowLedge" formControlna="knowLedge" value="0" style="width: 55px;">
+                              <span>%</span>
+                            </div>
+                            <div class="scope-item">
+                              <span class="scope-label">نگرش</span>
+                              <input type="number" class="form-control form-control-sm text-center" min="0" max="100"
+                                id="vision" formControlName="vision" value="0" style="width: 55px;">
+                              <span>%</span>
+                            </div>
+                            <div class="scope-item">
+                              <span class="scope-label">مهارت</span>
+                              <input type="number" class="form-control form-control-sm text-center" min="0" max="100"
+                                id="skill" formControlName="skill" value="0" style="width: 55px;">
+                              <span>%</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ردیف 4 -->
+                    <div class="row mb-2">
+                      <div class="col-md-6">
+                        <div class="form-row">
+                          <label class="col-form-label">امتیاز آموزشی:</label>
+                          <div class="input-wrapper">
+                            <input type="number" class="form-control form-control-sm compact-input" placeholder="0"
+                              id="trainingScore" formControlName="trainingScore" style="width: 70px;">
+                            <span class="ms-1 small">برای هر ساعت</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-row align-items-start">
+                          <label class="col-form-label pt-1">وضعیت:</label>
+                          <div class="status-checks">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="checkbox" id="s1">
+                              <label class="form-check-label" for="s1">دوره منتخب</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="checkbox" id="s2" checked>
+                              <label class="form-check-label" for="s2">مدون جهت استفاده</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="checkbox" id="s3" checked>
+                              <label class="form-check-label" for="s3">مشمول مزایا</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ردیف 5 -->
+                    <div class="row mb-2">
+                      <div class="col-md-6">
+                        <div class="form-row align-items-start">
+                          <label class="col-form-label pt-1">هدف دوره:</label>
+                          <textarea class="form-control form-control-sm" rows="3"
+                            placeholder="هدف دوره را شرح دهید..."></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-row align-items-start">
+                          <label class="col-form-label pt-1">توضیحات:</label>
+                          <textarea class="form-control form-control-sm" rows="3"
+                            placeholder="توضیحات تکمیلی..."></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- تب اطلاعات پایه -->
+                <div class="tab-pane fade" id="content-2">
+                  <div class="row mb-2">
+                    <div class="col-md-6">
+                      <div class="form-row">
+                        <label class="col-form-label">طرح آموزش:</label>
+                        <div class="input-wrapper">
+                          <custom-select size="col-12" formControlName="courseLayoutId" bindValue="id" title="طرح آموزش"
+                            identity="courseLayoutId" [options]="courseLayout"  style="width: 200px;"></custom-select>
+
+                          
+                           
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-row">
+                        <label class="col-form-label">سطح آموزش:</label>
+                        <div class="input-wrapper">
+
+
+                          <input type="number" class="form-control form-control-sm compact-input" placeholder="0"
+                            id="daysToExtension" formControlName="daysToExtension" style="width: 70px;">
+                          <span class="mx-1">روز</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- تب مجوز -->
+                <div class="tab-pane fade" id="content-3">
+                  <div class="empty-content">
+                    <i class="bi bi-shield-lock"></i>
+                    <p>محتوای این بخش در حال توسعه است</p>
+                  </div>
+                </div>
+
+                <!-- تب جزئیات -->
+                <div class="tab-pane fade" id="content-4">
+                  <div class="empty-content">
+                    <i class="bi bi-file-text"></i>
+                    <p>محتوای این بخش در حال توسعه است</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">
+            انصراف
+          </button>
+          <button type="submit" class="btn btn-sm btn-success">
+            {{ isEditMode ? 'ذخیره تغییرات' : 'ایجاد دوره' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

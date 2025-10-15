@@ -1,0 +1,17 @@
+.card-custom {
+    background-color: #ffffff1c;
+    border: 2px solid #fff !important;
+    /* From https://css.glass */
+    background: rgba(147, 180, 208, 0.38);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.6px);
+    -webkit-backdrop-filter: blur(2.6px);
+    border: 1px solid rgba(147, 180, 208, 1);
+}
+
+.list-item-text {
+    color: #000;
+    font-weight: 800;
+
+}

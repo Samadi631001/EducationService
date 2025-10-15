@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-10">
+    <div class="card shadow-sm border-0">
+      <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+        <h5 class="mb-0">📋 لیست جلسات</h5>
+        <app-label-button identifier="submitBtn" label="ثبت رکورد جدید" className="btn btn-light btn-sm fw-bold"
+          (clicked)="openModal()" permission="MT_Meetings_Add">
+        </app-label-button>
+      </div>
+
+      <div class="card-body p-3">
+        <ag-grid-angular #agGrid id="myGrid" [components]="components"
+          class="ag-theme-material mt-2 font-sahel table-striped table-bordered" style="height: 640px; width: 100%;"
+          [rowData]="records" [gridOptions]="gridOptions()" [modules]="modules()" (gridReady)="onGridReady($event)">
+        </ag-grid-angular>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Create / Update Meeting -->
+<div class="modal fade" id="sessionModal" tabindex="-1" aria-labelledby="sessionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="w-100">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="sessionModalLabel">
+            {{ isEditMode ? '✏️ ویرایش اطلاعات' : '➕ ایجاد اطلاعات جدید' }}
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="بستن"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="title" class="form-label">عنوان اطلاعات</label>
+              <input type="text" id="title" class="form-control" formControlName="title"
+                placeholder="مثلاً: اطلاعات برنامه‌ریزی پروژه" required>
+            </div>
+
+            <div class="col-12">
+              <label for="comment" class="form-label">توضیحات</label>
+              <textarea id="comment" class="form-control" rows="4" formControlName="comment"
+                placeholder="توضیحات تکمیلی اطلاعات را وارد کنید...">
+              </textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
+            انصراف
+          </button>
+          <button type="submit" class="btn btn-success px-4 fw-bold">
+            {{ isEditMode ? '💾 ذخیره تغییرات' : '✅ ایجاد اطلاعات' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
