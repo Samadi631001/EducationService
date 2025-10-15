@@ -364,3 +364,7 @@ FodyWeavers.xsdbin/
 obj/
 node_modules/
 appsettings.Development.json
+bin/
+obj/
+node_modules/
+appsettings.Development.json
