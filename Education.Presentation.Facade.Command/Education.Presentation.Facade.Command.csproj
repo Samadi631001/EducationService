@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Epc.Application" Version="1.2.7" />
+    <PackageReference Include="Epc.Company" Version="1.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Education.Presentation.Facade.Contracts\Education.Presentation.Facade.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

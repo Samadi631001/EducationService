@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
+    <PackageReference Include="Epc.Application" Version="1.2.7" />
+    <PackageReference Include="Epc.Autofac" Version="1.2.7" />
+    <PackageReference Include="Epc.Domain" Version="1.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Education.Application\Education.Application.csproj" />
+    <ProjectReference Include="..\Education.Infrastructure.Acl\Education.Infrastructure.Acl.csproj" />
+    <ProjectReference Include="..\Education.Infrastructure.Persistence\Education.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\Education.Infrastructure.Query\Education.Infrastructure.Query.csproj" />
+    <ProjectReference Include="..\Education.Presentation.Facade.Command\Education.Presentation.Facade.Command.csproj" />
+    <ProjectReference Include="..\Education.Presentation.Facade.Query\Education.Presentation.Facade.Query.csproj" />
+  </ItemGroup>
+
+</Project>

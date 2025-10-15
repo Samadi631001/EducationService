@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.4.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="Epc.Autofac" Version="1.2.7" />
+    <PackageReference Include="Epc.Company" Version="1.2.7" />
+    <PackageReference Include="Epc.EntityFramework" Version="1.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.7" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Education.Application.Contract\Education.Application.Contract.csproj" />
+    <ProjectReference Include="..\Education.Infrastructure.Configuration\Education.Infrastructure.Configuration.csproj" />
+    <ProjectReference Include="..\Education.Infrastructure.Query.Contracts\Education.Infrastructure.Query.Contracts.csproj" />
+    <ProjectReference Include="..\Education.Presentation.Facade.Contracts\Education.Presentation.Facade.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
